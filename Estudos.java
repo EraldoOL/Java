@@ -244,3 +244,295 @@ public static class Personagem{
   
   
 }
+
+
+
+
+public class Filme{
+  
+  public static class ContaNetflix{
+  
+  
+  private String idiomaP;
+  private String resolucaoTela;
+  
+  public void entrar(){
+    buscarP();
+    buscarR();
+  }
+  
+  private void buscarP(){
+    idiomaP = "PT-br";
+  }
+  
+  private void buscarR(){
+    resolucaoTela = "Full HD";
+  }
+  
+  private void assistirFilme(String nomeFilme){
+    
+    System.out.println("iniIniciando Filme" + nomeFilme);
+    System.out.println("Carregando o filme na resolcao " + resolucaoTela);
+    carregarAudio();
+  }
+  
+  private void carregarAudio(){
+    if(idiomaP == "PT-br" || idiomaP == "EN-US"){
+    System.out.println("Carregando o audio " + idiomaP);
+  }else{
+    System.out.println("Carregando o audio em EN-US");
+  }
+ }
+}
+  
+  public static void main(String[] args) throws Exception {
+    
+    ContaNetflix conta = new ContaNetflix();
+    conta.entrar();
+    conta.assistirFilme("Venom");
+  }
+}
+
+public class  Classes{
+  
+  public static class Personagem{
+    
+    
+    private String nome;
+    private int nivel;
+    private int forca;
+    private int vida;
+    private String classe;
+    
+    
+    
+    
+    
+    public Personagem(String nome, String classe){
+      
+      
+      this.nome = nome;
+      this.classe = classe;
+      nivel = 10;
+      vida = nivel * 5000;
+      if (classe.equals("Guerreiro")){
+        forca = nivel * 2;
+      }  else {
+        forca = nivel * 1;
+      }
+      
+      
+    }
+    
+    
+    
+    public void mostrarStatus(){
+      
+      System.out.format(" Nome: %s\n Nivel: %d\n Vida: %d\n Classe: %s\n Forca: %d", nome , nivel, vida, classe, forca);
+    }
+    
+      public String getNome(){
+      return nome;
+    }
+    
+    
+    
+    public void setNome(String nome){
+      this.nome = nome;
+      
+    }
+    
+    
+    public int getNivel(){
+      return nivel;
+      
+    }
+    
+    
+    
+    public void setNivel( int nivel){
+      this.nivel = nivel;
+      
+    }
+    
+    public int getForca(){
+      return forca;
+      
+    }
+    
+    public void setForca(int forca){
+      this.forca = forca;
+    }
+    
+    public int getVida(){
+      return vida;
+      
+    }
+    
+    public void setVida(int vida){
+      this.vida = vida;
+    }
+    
+   }
+    
+  
+  
+  public class  Classes{
+  
+  public static class Personagem{
+    
+    
+    private String nome;
+    private int nivel;
+    private int forca;
+    private int vida;
+    private String classe;
+    
+    
+    
+    
+    
+    public Personagem(String nome, String classe){
+      
+      
+      this.nome = nome;
+      this.classe = classe;
+      nivel = 10;
+      vida = nivel * 5000;
+      if (classe.equals("Guerreiro")){
+        forca = nivel * 2;
+      }  else {
+        forca = nivel * 1;
+      }
+      
+      
+    }
+    
+    
+    
+    public void mostrarStatus(){
+      
+      System.out.format(" Nome: %s\n Nivel: %d\n Vida: %d\n Classe: %s\n Forca: %d", nome , nivel, vida, classe, forca);
+    }
+    
+      public String getNome(){
+      return nome;
+    }
+    
+    
+    
+    public void setNome(String nome){
+      this.nome = nome;
+      
+    }
+    
+    
+    public int getNivel(){
+      return nivel;
+      
+    }
+    
+    
+    
+    public void setNivel( int nivel){
+      this.nivel = nivel;
+      
+    }
+    
+    public int getForca(){
+      return forca;
+      
+    }
+    
+    public void setForca(int forca){
+      this.forca = forca;
+    }
+    
+    public int getVida(){
+      return vida;
+      
+    }
+    
+    public void setVida(int vida){
+      this.vida = vida;
+    }
+    
+   }
+    
+   public static void main(String[] args) throws Exception {
+    
+    Personagem guerreiro = new Personagem("Pionne", "Guerreiro");
+    guerreiro.mostrarStatus();
+    
+  }
+}
+
+
+//Contrutor
+
+
+public class Classes{
+  
+
+public static class Pessoa{
+  
+  private String nome;
+  private int idade;
+  private float altura;
+  
+  
+  public Pessoa(){
+    System.out.println("Uma pessoa acaba de nascer");
+    altura = 1.50f;
+  }
+  
+  
+  
+  
+  public String getNome(){
+    return nome;
+    
+  }
+  
+  public void setNome( String nome){
+    this.nome = nome;
+  }
+  
+  
+  
+  public int getIdade(){
+    return idade;
+    
+  }
+  
+  public void setIdade( int idade){
+    this.idade = idade;
+    
+  }
+  
+  
+  
+  public float getAltura(){
+    return altura;
+    
+  }
+  
+  public void setAltura( float altura){
+    this.altura = altura;
+  }
+  
+ }
+ 
+ public static void main(String[] args) throws Exception {
+   
+   Pessoa pessoa = new Pessoa();
+   pessoa.setNome("joao");
+   pessoa.setIdade(47);
+   pessoa.setAltura(1.90f);
+   
+   
+   System.out.format("Nome :%s, idade = %d e %.2f", pessoa.getNome(),
+   pessoa.getIdade(), pessoa.getAltura());
+ }
+
+}
