@@ -536,3 +536,258 @@ public static class Pessoa{
  }
 
 }
+
+
+
+public class App{
+  
+  
+  public static class Circulo implements Fig{
+    
+    
+    
+    private int raio;
+    
+    
+    
+    
+    public Circulo(int raio){
+      this.raio = raio;
+    }
+    
+    
+    
+    public double calcularArea(){
+      
+      return Math.PI * Math.pow(raio,2);
+      
+    }
+    
+    public int gerRaio() {
+      return raio;
+    }
+    
+    public void setRaio( int raio){
+      this.raio = raio;
+    }
+  }
+  
+  
+  public static class Quadrado implements Fig{
+  
+  private int lado;
+  
+  
+  public Quadrado(int lado){
+    
+    
+    this.lado = lado;
+  }
+  
+  public double calcularArea() {
+    
+    return Math.pow(lado,2);
+    
+  }
+  
+  
+  public int getLado() {
+      return lado;
+    }
+    
+    public void setLado( int lado){
+      this.lado = lado;
+    }
+    
+  }
+  
+  
+  public class CalculadorArea{
+    
+    
+    public class somarAreas(Fig figuraA, Fig figuraB){
+      
+      double totalArea = figuraA.calcularArea() + figuraB.calcularArea();
+      return totalArea;
+      
+    }
+    
+  }
+  
+  
+  
+  
+  public interface Fig{
+    
+  public double calcularArea();
+  
+}
+  
+  
+  
+  public static void main (String[] args) throws Exception{
+    
+    Circulo circuloP = new Circulo(2);
+    Quadrado quadrado = new Quadrado(5);
+    
+    
+    CalculadorArea calculador = new CalculadorArea();
+    
+    System.out.println(calculador.somarAreas(quadrado, circulo));
+    
+  }
+}
+
+
+
+public class App{
+  
+  public  interface  Jogo{
+    
+    
+      public void fechar();
+      public void jogar();
+    
+    
+  }
+  
+  public static class PingPong implements Jogo{
+    
+    
+    public  void  fechar() {
+      
+      System.out.println("Slavar o progresso");
+      System.out.println("Fechar o jogo");
+      
+      
+    }
+    
+    
+    public  void  jogar() {
+      
+      System.out.println("cutscene");
+      System.out.println("mostrando o menu inicial");
+      System.out.println("tocando musica de fundo");
+      
+    }
+    
+  }
+  
+  
+  public static class Xadrez implements Jogo{
+    
+    public void fechar(){
+      System.out.println("Fechando o jogo de Xadrez");
+    }
+    
+    public void jogar(){
+      
+      System.out.println("exibir menu ");
+      System.out.println("Exibir video de jogadas no fundo");
+      
+    }
+    
+    
+  }
+  
+  
+  public static class TiroAoAlvo implements Jogo{
+    
+    public void fechar(){
+      System.out.println("Salvar o progresso");
+      System.out.println("Sair da partida");
+      System.out.println("Sair do jogo");
+    }
+    
+    public void jogar(){
+      
+      System.out.println("Carregando jogo ");
+      System.out.println("se conectando ao servidor");
+      System.out.println("Carregando partida");
+      
+    }
+    
+    
+  }
+  
+  
+  public static class Videogame{
+    
+    private boolean estaLigado;
+    
+    private Jogo jogo;
+    
+    public void ligar(){
+      
+      System.out.println("Ligando o videogame...");
+      
+      this.estaLigado = true;
+    }
+    
+    
+    
+    public void jogar(Jogo jogo){
+      
+      if(estaLigado == true) {
+      
+      System.out.println("Iniciando o jogo...");
+      this.jogo = jogo;
+      jogo.jogar();
+      } else {
+        
+        System.out.println("Videogame esta fechado");
+        
+      }
+    }
+    
+    public void fechar(){
+      
+      if(estaLigado == true) {
+      
+      System.out.println("Fechando o jogo...");
+      boolean temJogo = jogo != null;
+      if(temJogo){
+        
+        jogo.fechar();
+        jogo = null;
+        
+      } else {
+        
+        System.out.println("Nao tem nenhum jogo rodando");
+        
+      }
+      
+      } else {
+        
+        System.out.println("Videogame esta fechado");
+        
+      }
+      
+      System.out.println("Fechando o jogo...");
+      boolean temJogo = jogo != null;
+      if(temJogo){
+        
+        jogo.fechar();
+        jogo = null;
+        
+      } else {
+        
+        System.out.println("Nao tem nenhum jogo rodando");
+        
+      }
+    }
+    
+  }
+  
+  
+  
+  public static void main (String[] args) throws Exception{
+    
+    
+   PingPong pingpong = new PingPong(); 
+   Videogame xDev = new Videogame();
+   xDev.ligar();
+   xDev.jogar(new TiroAoAlvo());
+   xDev.fechar();
+  }
+}
