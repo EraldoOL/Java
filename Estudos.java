@@ -791,3 +791,147 @@ public class App{
    xDev.fechar();
   }
 }
+
+
+//ARRAYLIST
+
+String[] arrayEstatico = new String[5];
+    arrayEstatico[0] = "Goku";
+    arrayEstatico[1] = "Maria";
+    arrayEstatico[2] = "Pedro";
+    arrayEstatico[3] = "Vegeta";
+    arrayEstatico[4] = "bobs";
+    
+   ArrayList<String> arrayDinamico = new ArrayList<String>();
+   arrayDinamico.add("Goku");
+   arrayDinamico.add("Maria");
+   arrayDinamico.add("Pedro");
+   arrayDinamico.add("Vegeta");
+   arrayDinamico.add("bob");
+   
+   for (int indice = 0; indice < arrayEstatico.length; indice ++ ){
+     System.out.println(arrayEstatico[indice]);
+   }
+   
+   
+   System.out.println("Imprimindo");
+   
+   System.out.println("Remover o Pedro");
+   
+    arrayDinamico.remove(2);
+   
+    //arrayDinamico.clear();
+   
+   for (int indice = 0; indice < arrayDinamico.size(); indice ++ ){
+     
+     System.out.println(arrayDinamico.get(indice));
+     
+   }
+   
+   for (String nome:arrayDinamico) {
+     System.out.println(nome);
+   }
+   
+   
+   import java.util.ArrayList;
+
+public class App{
+  
+  public static class Pessoa{
+    
+    private String nome;
+    private int idade;
+    
+    public Pessoa(String nome, int idade){
+      this.nome = nome;
+      this.idade = idade;
+    }
+    
+    public String getNome(){
+      return nome;
+    }
+    
+    public void setNome(String nome){
+      this.nome = nome;
+    }
+    
+    public int getIdade(){
+      return idade;
+    }
+    
+    public void setIdade(int nome){
+      this.idade = idade;
+    }
+    
+    
+  }
+  
+  public static void main (String[] args) throws Exception{
+    
+    
+    
+    // tipo Primitivo  ->   wrapper Class
+    //     
+    //     int                 Integer
+    //     
+    //     float               Float
+    //     
+    //     double              Double
+    //     
+    //     char                Character
+    
+    
+    ArrayList<String> filmes = new ArrayList<String>();
+    
+    ArrayList<Integer> numeros = new ArrayList<Integer>();
+    numeros.add(50);
+    
+    Pessoa joao = new Pessoa("Joao", 20);
+    Pessoa maria = new Pessoa("maria", 30);
+    Pessoa pedro = new Pessoa("Pedro", 70);
+    
+    
+    ArrayList<Pessoa> pessoas = new ArrayList<Pessoa>();
+    pessoas.add();
+    pessoas.add(maria);
+    pessoas.add(pedro);
+    
+    for(Pessoa pessoa : pessoas){
+      System.out.println(pessoa.getNome());
+    }
+   
+  }
+}
+
+import java.util.ArrayList;
+import java.util.Collections;
+
+public class App{
+  
+  
+    
+    
+  
+  public static void main (String[] args) throws Exception{
+    
+    ArrayList<Integer> numeros = new ArrayList<Integer>();
+    
+    numeros.add(70);
+    numeros.add(80);
+    numeros.add(50);
+    numeros.add(10);
+    numeros.add(30);
+    numeros.add(-13);
+    numeros.add(500);
+    
+    
+    Collections.sort(numeros, Collections.reverseOrder());
+    
+    for(Integer numero: numeros){
+      System.out.println(numero);
+    }
+
+
+
+  }
+}
