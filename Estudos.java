@@ -935,3 +935,355 @@ public class App{
 
   }
 }
+
+
+//Heranca
+
+public class App{
+  
+  
+  public static class Animal{
+    
+    
+    
+    
+    private String nome;
+    
+    
+    public Animal(String nome){
+      this.nome = nome;
+    }
+    
+    
+    public void comer(){
+      
+      System.out.printf("%s comeu\n", nome);
+      
+    }
+    
+    public void beber(){
+      
+      System.out.printf("%s comeu\n", nome);
+      
+    }
+    
+    public String getNome(){
+      return nome;
+    }
+    
+    public void setNome( String nome){
+      this.nome = nome;
+    }
+    
+    
+  }
+  
+  
+  public static class Ave extends Animal{
+    
+    
+    public Ave (String nome){
+      
+      super(nome);
+      
+    }
+    
+    public void voar (){
+      
+      System.out.printf("%s voou\n", getNome());
+      
+    }
+    
+  }
+  
+  public static class Cachorro extends Animal{
+    
+    private int ossosComidos;
+    
+    public Cachorro(String nome){
+      super(nome);
+      
+    }
+    
+    public void latir(){
+      
+      System.out.printf("%s latiu\n", getNome());
+      
+    }
+    public void lamber(){
+      
+      System.out.printf("%s lambeu\n", getNome());
+      
+    }
+    
+    
+    
+  }
+  
+  
+  
+  public static class Gato extends Animal{
+    
+    
+    
+    public Gato(String nome){
+      super(nome);
+    }
+    
+    public void miar(){
+      
+      System.out.printf("%s miou\n", getNome());
+    }
+    
+  }
+  
+  public static class Dragao extends Ave{
+    
+    
+    
+    public Dragao(String nome){
+      super(nome);
+    }
+    
+    public void soltarFogo(){
+      
+      System.out.printf("%s soltou uma bola de fogo\n", getNome());
+    }
+    
+  }
+  
+  public static class Pombo extends Ave{
+    
+    private int cartasEnviadas;
+    
+    public Pombo(String nome){
+      super(nome);
+      cartasEnviadas = 10;
+    }
+    
+    
+    
+    public void fazerPru(){
+      
+      System.out.printf("%s fez Pruuu\n", getNome());
+    }
+    
+    
+    public void enviarCarta(){
+      
+      System.out.printf("%s enviou uma carta\n", getNome());
+      cartasEnviadas ++;
+    }
+    
+    public int getCartasEnviadas(){
+      return cartasEnviadas;
+    }
+    
+  }
+  
+    
+    
+  
+  public static void main (String[] args) throws Exception{
+    
+    Cachorro cachorro = new Cachorro("caramelo");
+    cachorro.comer();
+    cachorro.latir();
+    
+    
+    Gato gato = new Gato("Bartolomeu");
+    gato.miar();
+    
+    
+    Dragao dragao = new Dragao("Dragao de olhos");
+    dragao.voar();
+    dragao.soltarFogo();
+    
+    
+    Pombo pombinha = new Pombo("cedex");
+    pombinha.voar();
+    pombinha.enviarCarta();
+    pombinha.fazerPru();
+  }
+}
+
+
+
+public class Her{
+  
+  public static class Serie{
+    
+    
+    private String nome;
+    
+    private int temporadas;
+    
+    private int ano;
+    
+    
+    
+    public String pegarInformacoes(){
+      
+      String informacoes = String.format("Nome: %s (%d)- %d temporada", nome,
+      ano, temporadas);
+      
+      return informacoes;
+    }
+    
+    public String toString(){
+      
+      return
+      
+    }
+    
+    
+    
+    public Serie( String nome , int temporadas, int ano){
+      
+      this.nome = nome;
+      this.temporadas = temporadas;
+      this.ano = ano;
+      
+    }
+    
+    public String getNome(){
+      return nome;
+      
+    }
+    
+    public void setNome(String nome){
+      this.nome = nome;
+    }
+    
+    
+    public int getTemporadas(){
+      return temporadas;
+      
+    }
+    
+    public void setTemporadas(int temporadas){
+      this.temporadas = temporadas;
+    }
+    
+    
+    public int getAno(){
+      return ano;
+      
+    }
+    
+    public void setAno(int ano){
+      this.ano = ano;
+    }
+  }
+  
+  
+  public static void  main(String[] args) throws Exception{
+    
+    Serie serieQualquer = new Serie("the last uf us", 1 ,2023);
+    
+    //System.out.println(serieQualquer//.pegarInformacoes);
+    
+    System.out.println(serieQualquer.toString());
+  }
+}
+
+
+
+public class Her{
+  
+    public static class Personagem{
+      
+      private String nome;
+      private String classe;
+      private int nivel;
+      
+      
+      public Personagem(String nome){
+        this.nome = nome;
+        this.classe = "nenhuma";
+        this.nivel = 1;
+      }
+      
+      public String toString(){
+        
+        String informacoes = String.format("%s, (nivel: %d) - Classe: %s", nome,
+        nivel, classe);
+        
+        return informacoes;
+        
+      }
+      
+      
+      
+      public void atacar(){
+        
+        System.out.println("O Arqueiro atacou");
+        
+      }
+      
+      
+      
+      public String getNome(){
+        return nome;
+        
+      }
+      
+      public void setNome( String nome){
+        this.nome = nome;
+      }
+      
+      
+      public String getClasse(){
+        return classe;
+        
+      }
+      
+      public void setClasse( String classe){
+        this.classe = classe;
+      }
+      
+      
+      public int getNivel(){
+        return nivel;
+        
+      }
+      
+      public void setNivel( int nivel){
+        this.nivel = nivel;
+      }
+    }
+    
+    public static class Arqueiro extends Personagem{
+      
+      private String arma;
+      
+      public Arqueiro(String nome){
+        
+        super(nome);
+        setClasse("Arqueiro");
+        this.arma = "Arco longo";
+      }
+      
+      public String toString(){
+        
+        String InformacaoPersonagem = super.toString();
+        String informacaoArqueiro = String.format(" - Arma : %s", arma);
+  
+        return InformacaoPersonagem + informacaoArqueiro;
+        
+      }
+      
+    }
+  
+  public static void  main(String[] args) throws Exception{
+    
+    Personagem personagem = new Personagem("Joao");
+    System.out.println(personagem);
+    
+    Arqueiro arqueiro = new Arqueiro("legolas");
+    System.out.println(arqueiro);
+    
+    arqueiro.atacar();
+    
+  }
+}
