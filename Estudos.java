@@ -1287,3 +1287,507 @@ public class Her{
     
   }
 }
+
+
+import java.util.Random;
+
+public class App{
+  
+  
+  public abstract static class Personagem{
+  
+  
+  public abstract void atacar();
+  
+  protected int sortearNumero(){
+    
+    Random gerador = new Random();
+    int numero = gerador.nextInt(6);
+    return numero;
+    
+    
+  }
+}
+  
+  
+  public static class Guerreiro extends Personagem{
+  
+  public void atacar(){
+    
+    int valorDado = this.sortearNumero();
+    System.out.printf("voce tirou um %d no dado\n", valorDado);
+    if (valorDado < 3) {
+      System.out.println("O Guerreiro errou o atack");
+    } else if(valorDado == 6){
+      
+      System.out.println("o Guerreiro acertou o especial");
+      
+    } else {
+      System.out.println("o Guerreiro acertou");
+    }
+    
+    
+  }
+  
+  
+}
+
+  
+  
+    
+  
+  public static void main (String[] args) throws Exception{
+    
+    Guerreiro guerreiro = new Guerreiro();
+    guerreiro.atacar();
+    
+    
+  }
+}
+
+//POLIMORFISMO
+
+
+
+public class App{
+  
+  public static class Video{
+    
+    private String nome;
+    
+    
+    public Video(String nome){
+      this.nome = nome;
+    }
+    
+    public void play(){
+      System.out.println("Play filme");
+    }
+    
+    
+    public String getNome(){
+      return nome;
+    }
+    
+    public void setNome(String nome){
+      this.nome = nome;
+    }
+  }
+  
+  
+  public static class Filme extends Video{
+    
+    private String audio;
+    private String legenda;
+    
+    public Filme(String nome){
+      super(nome);
+      this.audio = "portugues";
+      this.legenda = "nenhuma";
+    }
+    
+    public void play(){
+       System.out.println("Play Filme " + getNome());
+      
+    }
+    
+    public void play(String audio){
+      
+      this.audio = audio;
+      
+      
+      if (audio == "portugues"){
+        
+        this.legenda = "nenhuma";
+        
+      } else {
+        
+        this.legenda = "portugues";
+      }
+      System.out.println("Play " + toString());
+      
+    }
+    
+    public void play(String audio, String legenda){
+      
+      this.audio = audio;
+      this.legenda = legenda;
+      
+      
+      System.out.println("Play " + toString());
+      
+    }
+    
+    public String toString(){
+      
+      String informacao = String.format("Filme %s (audio %s, legenda %s)",
+      getNome(), audio, legenda);
+      return informacao;
+      
+    }
+    
+    public String getAudio(){
+      return audio;
+    }
+    
+    public void setAudio(String audio){
+      this.audio = audio;
+    }
+    
+    
+    public String getLegenda(){
+      return legenda;
+    }
+    
+    public void setLegenda(String legenda){
+      this.legenda = legenda;
+    }
+    
+    
+  }
+  
+  
+  public static class Serie extends Filme{
+    
+    private int temporadas;
+    private int episodiosTemporadas;
+    private int episodioAtual;
+    private int temporadaAtual;
+    
+    
+    public Serie (String nome, int temporadas, int episodiosTemporadas){
+      
+      super(nome);
+      this.temporadas = temporadas;
+      this.episodiosTemporadas = episodiosTemporadas;
+      this.temporadaAtual = 1;
+      this.episodioAtual = 1;
+    }
+    
+    public String toString(){
+      
+      
+      String informacao = String.format("Serie %s %dx%02d(audio %s, legenda %s)",
+      getNome(), 
+      temporadaAtual,
+      episodioAtual,
+      getAudio(),
+      getLegenda());
+      return informacao;
+      
+    }
+    
+    public int getTemporadas(){
+      return temporadas;
+    }
+    
+    public void setTemporadas(int temporadas){
+      this.temporadas = temporadas;
+    }
+    
+    
+    public int getEpisodiosTemporadas(){
+      return episodiosTemporadas;
+    }
+    
+    public void setNome(int episodiosTemporadas){
+      this.episodiosTemporadas = episodiosTemporadas;
+    }
+    
+    
+    public int getEpisodioAtual(){
+      return episodioAtual;
+    }
+    
+    public void setEpisodioAtual(int episodioAtual){
+      this.episodioAtual = episodioAtual;
+    }
+    
+    
+    public int getTemporadaAtual(){
+      return temporadaAtual;
+    }
+    
+    public void setTemporadaAtual(int temporadaAtual){
+      this.temporadaAtual = temporadaAtual;
+    }
+  }
+  
+  
+  
+    
+  
+  public static void main (String[] args) throws Exception{
+    
+    Filme filme = new Filme("lagoa azul");
+    filme.play("portugues");
+    
+    Serie serie = new Serie("the last of us", 2, 10);
+    System.out.println(serie);
+    
+  }
+}
+
+
+//AGREGAÇÃO
+
+
+import java.util.ArrayList;
+
+public class App{
+  
+  public static class Telefone{
+    
+    
+    
+    private String numeroChip;
+    private Contatos contatos;
+    
+    //ArrayList<Contato> contatos;
+    
+    
+    
+    
+    public Telefone(String numeroChip){
+      
+      
+      this.numeroChip = numeroChip;
+      this.contatos = new Contatos();
+     // this.contatos = new ArrayList<Contato//>();
+      
+      
+    }
+    
+    
+    public String getNumeroChip(){
+      
+      return numeroChip;
+    }
+    
+    public Contatos getContatos(){
+      
+      return contatos;
+      
+    }
+    
+    
+    
+  }
+  
+  public static class  Contato{
+    
+    private String nome;
+    
+    private String numero;
+    
+    
+    
+    public Contato(String nome, String numero){
+      
+      this.nome = nome;
+      this.numero = numero;
+      
+    }
+    
+    
+    public String getNome(){
+      
+      return nome;
+      
+    }
+    
+    public void setNome(String nome) {
+      
+      this.nome = nome;
+      
+    }
+    
+    
+    public String getNumero(){
+      
+      return numero;
+      
+    }
+    
+    public void setNumero(String numero) {
+      
+      this.numero = numero;
+      
+    }
+    
+    public String toString(){
+      
+      
+      String informacao = String.format("Nome: %s\t Numero: %s", nome, numero);
+      return informacao;
+    }
+    
+    
+  }
+  
+  public static class Contatos {
+    
+    private ArrayList<Contato> contatos;
+    
+    
+    
+    public Contatos() {
+      
+      this.contatos = new ArrayList<Contato>();
+      
+      
+    }
+    
+    public void adicionar (String nome, String numero){
+      
+      
+      Contato novoContato = new Contato(nome, numero);
+      contatos.add(novoContato);
+    }
+    
+    
+    public void adicionar(Contato novoContato){
+      contatos.add(novoContato);
+      
+      
+      
+      
+    }
+    
+    public Contatos buscar(String palavra){
+      
+      String palavraChave = palavra.toLowerCase();
+      
+      Contatos contatosF = new Contatos();
+      
+      for(Contato contato : contatos){
+        String nomeContato = contato.getNome().toLowerCase();
+        if (nomeContato.startsWith(palavraChave)){
+          
+          contatosF.adicionar(contato);
+          
+        }
+      }
+      
+      return contatosF;
+    }
+    
+    
+    public ArrayList<Contato> getContatos(){
+      
+      return contatos;
+      
+    }
+    
+    public void setContatos(ArrayList<Contato> contatos){
+      
+      this.contatos = contatos;
+      
+    }
+    
+    public String toString(){
+      
+      
+      String informacao = "Contatos:\n";
+      for(Contato contato: contatos){
+        
+        informacao += informacao + contato.toString() + "\n";
+        
+      }
+      return informacao;
+    }
+    
+  }
+  
+  
+  public static class Ligacao{
+    
+    private String numeroO;
+    private String numeroD;
+    private String horario;
+    
+    
+    
+    
+    
+    public Ligacao(String numeroO, String numeroD){
+      
+      this.numeroO = numeroO;
+      this.numeroD = numeroD;
+      
+    }
+    
+    
+    public void ligar(){
+      System.out.println("ligando para " + numeroD);
+      System.out.println("chamando...");
+      System.out.println("Numero ocupado");
+      
+      DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/YY HH:mm:ss");
+      LocalDateTime horarioAgora = LocalDateTime.now();
+      horario = formatador.format(horarioAgora);
+    }
+    
+    
+    public String getNumeroO(){
+      
+      return numeroO;
+      
+    }
+    
+    
+    public String toString(){
+      String informacao = String.format("Origem: %s/t Destino: %s/t horario:%s",
+      numeroO, numeroD, horario);
+      return informacao;
+    }
+    
+    
+    public void setNumeroO(String numeroO) {
+      
+      this.numeroO = numeroO;
+      
+    }
+      
+      
+    public String getNumeroD(){
+      
+      return numeroD;
+      
+    }
+    
+    public void setNumeroD(String numeroD) {
+      
+      this.numeroD = numeroD;
+    }
+  }
+  
+  
+  public static void main(String[] args) throws Exception{
+    
+    Telefone telefone = new Telefone("4002 8922");
+    
+    Contato contatoA = new Contato("Lucas", "408917456");
+    Contato contatoB = new Contato("Luan", "13344");
+    Contato contatoC = new Contato("Maria", "838383");
+    Contato contatoD = new Contato("Carlos", "737388");
+    
+    Contatos telefoneContatos = telefone.getContatos();
+    
+    telefoneContatos.adicionar(contatoA);
+    telefoneContatos.adicionar(contatoB);
+    telefoneContatos.adicionar(contatoC);
+    telefoneContatos.adicionar(contatoD);
+    
+    System.out.println(telefoneContatos);
+    
+    
+    System.out.println("contatos filtrados");
+    System.out.println(telefoneContatos.buscar("l"));
+    
+    Ligacao ligacao = new Ligacao("123", "456");
+    Ligacao.ligar();
+    System.out.println(Ligacao);
+  }
+  
+}
