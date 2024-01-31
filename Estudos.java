@@ -1791,3 +1791,324 @@ public class App{
   }
   
 }
+
+//Static
+
+
+public class Main{
+  
+  
+  
+  public static class Matematica{
+    
+    
+    private static double valorPi = 3.14;
+    
+    
+    public static int somar(int numeroA, int numeroB){
+      return numeroA + numeroB;
+    }
+    
+    
+    public static double calcularArea( double lado){
+      
+      return lado * lado;
+    }
+    
+    
+    
+    
+    public static double calcularAreaCirculo(double raio){
+      
+      double area = valorPi * raio * raio;
+      return area;
+    }
+  }
+  
+  public static class Jogo{
+    
+    public void jogar(){
+      
+      double areaJogador = Matematica.calcularAreaCirculo(4);
+      
+    }
+    
+  }
+  
+  public static double calcularDobroDaAreaCirculo(double raio){
+    
+    double area = Matematica.calcularAreaCirculo(raio);
+    return area;
+    
+  }
+  
+  
+  public static class Carro{
+    
+    private String nome;
+    private int ano;
+    public static int anoCompra = 2023;
+    
+    public Carro(String nome, int ano){
+      this.nome = nome;
+      this.ano = ano;
+    }
+    
+    public String getNome(){
+      return nome;
+      
+    }
+    
+    public void setNome(String nome){
+      this.nome = nome;
+    }
+    
+    
+    public int getAno(){
+      return ano;
+      
+    }
+    
+    public void setAno(int ano){
+      this.ano = ano;
+    }
+    
+  }
+  
+  
+  public static void main(String[] args) throws Exception{
+    
+    
+    Carro ferrari = new Carro("Ferrari", 2023);
+    
+    Carro fusca = new Carro("Fusca", 1999);
+    
+    System.out.println(ferrari.getNome());
+    System.out.println(ferrari.anoCompra);
+    
+    
+    
+    System.out.println(fusca.getNome());
+    System.out.println(fusca.anoCompra);
+    
+    
+  }
+}
+
+
+
+
+//Constante
+
+public class Main{
+  
+  
+  public static class Login{
+    
+    //constante tem q ser static
+    //nome em snack case
+    //final
+      
+    private static final int TAMANHO_MINIMO = 7;
+    
+    public void verificarSenha(String senha){
+      
+      
+      
+      if (senha.length() >= TAMANHO_MINIMO) {
+        
+        System.out.println("Senha valida");
+      } else {
+        
+        System.out.println("Senha invalida");
+      }
+      
+    }
+  }
+  
+  
+  public static class Cpf{
+    
+    private static final int INDICE_REGIAO = 8;
+    private static final int INDICE_PRIMEIRO = 9;
+    private static final int INDICE_SEGUNDO = 10;
+    
+    
+    public void validar(String cpf){
+      
+      int regiao = cpf.charAt(INDICE_REGIAO);
+      int primeiroDigito = cpf.charAt(INDICE_PRIMEIRO);
+      int segundoDigito = cpf.charAt(INDICE_SEGUNDO);
+    }
+  }
+  
+  public static class Matematica{
+    
+    private static final double PI = 3.14;
+    
+    public double calcularAreaCirculo(int raio){
+      
+      
+      double area = PI * raio * raio;
+      return area;
+      
+    }
+    
+    
+  }
+  
+  public static void main(String[] args) throws Exception{
+    
+    
+    
+    
+    
+  }
+}
+
+//TELA NO JAVA
+
+
+import javax.swing.JFrame;
+import javax.swing.JButton;
+import javax.awt.event.addActionListener;
+
+
+
+public class Tela{
+
+
+
+public static void main(String[] args) throws Exception {
+
+    JFrame janela = new JFrame();
+    
+    JLabel labelUsuario = JLabel("usuario");
+    labelUsuario.setBounds(50,50,100,30);
+    
+    
+    JTextField campoU = new JTextField();
+    campoU.setBounds(50,80,100,30);
+    
+    
+    
+    JButton botao = new JButton("clique aki");
+    botao.setBounds(0,0,200,30);
+    bitao.addActionListener(new addActionListener(){
+      
+      public void actionPerformed(ActionEvent e){
+        System.out.println("Se inscreva no canal");
+      }
+      
+    })
+    
+    janela.add(botao);
+    janela.add(labelUsuario);
+    janela.add(campoU);
+    
+    janela.setLayout(null);
+    
+    
+    
+    
+    janela.setBounds(0, 0,400,600);
+    
+    janela.setDefaltCloserOperation(JFrame.EXIT_ON_CLOSE);
+    
+    
+    janela.setVisible(true);
+    
+    }
+}
+
+//TRY & CATCH
+
+
+public class App{
+  
+  
+  public static class Matematica{
+    
+    public void dividir(int numeroA, int numeroB){
+      
+      System.out.println(numeroA / numeroB);
+    }
+  }
+  
+  
+  public static void main(String[] args) throws Exception{
+    
+    //vetor
+    
+    int[] numeros = new int[] {10,20,30,100};
+    int[] peso = new int[] {2,0,4};
+    Matematica matematica = new Matematica();
+    
+    
+    
+    try {
+      
+      
+      for (int i = 0; i < 4  ; i++ ) {
+        int resultado = numeros[i] / peso[i];
+        
+        matematica.dividir(numeros[i], peso[i]);
+        System.out.printf("%d / %d = %d\n", numeros[i], peso[i], resultado);
+      }
+      
+      System.out.println("Numeros: ");
+      System.out.println(numeros[5]);
+      
+      
+    } catch(ArithmeticException erro){
+      
+      System.out.println("Erro de calculo: " + erro.getMessage());
+      
+    } catch(ArrayIndexOutOfBoundsException erro){
+      
+      System.out.println("Erro de vetor: " + erro.getMessage());
+      
+    }catch(Exception erro){
+      
+      
+      System.out.println("Erro generico ");
+      
+    
+    }
+    
+    
+    
+    System.out.println("Mensagem final: ");
+  }
+}
+
+public class App{
+  
+  
+  
+  
+  public static void main(String[] args) throws Exception{
+    
+    
+    
+    try {
+      System.out.println("Mensagem antes da excercao");
+      int resultado = 10 / 0;
+      
+      System.out.println("Mensagem apos a excercao");
+      
+    } catch(Exception erro) {
+      
+      System.out.println("Erro" +erro.getMessage());
+      
+    } finally {
+      
+      System.out.println(" vou ser executado a forca");
+      
+    }
+    
+    System.out.println("Mensagem final");
+    
+  }
+  
+}
