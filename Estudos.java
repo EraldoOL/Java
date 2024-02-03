@@ -2112,3 +2112,146 @@ public class App{
   }
   
 }
+
+package Estrutura_de_dados;
+
+import java.util.Scanner;
+
+public class Main{
+  
+  
+  public static void main(String[] args){
+    
+    int[] vetor = new int[8];
+    
+    for (int i = 0;i < vetor.length ; i++ ) {
+      vetor[i] = (int) (Math.random() * 10);
+      System.out.println(vetor[i]);
+    }
+    
+    System.out.println("Qual numero vc busca? ");
+    Scanner leitor = new Scanner(System.in);
+    int buscado = leitor.nextInt();
+    
+    
+    boolean achou = false;
+    
+    for (int i = 0;i < vetor.length ; i++ ) {
+      if (vetor[i] == buscado) {
+        
+        achou = true;
+        break;
+      }
+    }
+    if (achou) {
+      
+      System.out.println("Achou");
+    }else{
+      
+      System.out.println("N achou");
+    }
+  }
+}
+
+//MELHOR TESTADOR DE VELOCIDADE 
+
+package Estrutura_de_dados;
+
+import java.util.Scanner;
+
+//BUSCA BINARIA
+
+public class Bin{
+  
+  public static void main(String[] args) {
+    
+    
+    int[] vetor = new int[10000];
+    
+    for (int i = 0 ; i < vetor.length; i++) {
+      vetor[i] = i * 2;
+      System.out.println(vetor[i]);
+    }
+    
+    System.out.println("Qual numero vc busca: ");
+    
+    Scanner leitor = new Scanner(System.in);
+    int buscado = leitor.nextInt();
+    
+    int contador = 0;
+    
+    
+    boolean achou = false;
+    int inicio = 0;
+    int fim = vetor.length -1;
+    int meio;
+    
+    while(inicio <= fim){
+      contador ++;
+      
+      meio = (int) ((inicio + fim) /2);
+      if (vetor[meio] == buscado) {
+        
+        achou = true;
+        break;
+      }else if(vetor[meio] < buscado){
+        
+        inicio = meio +1;
+        
+      }else{
+        
+        fim = meio -1;
+      }
+    }
+    
+    System.out.println("Quantidade de testes: " + contador);
+    if (achou == true) {
+      System.out.println("achou");
+    }else{
+      System.out.println("n achou");
+    }
+  }
+}
+
+
+//////Pior testador
+package Estrutura_de_dados;
+
+// BUBBLE SORT
+
+public class Main{
+  
+  public static void main(String[] args) {
+    int[] vetor = new int[10000];
+    
+    for (int i = 0; i < vetor.length ; i++) {
+      vetor[i] = (int) (Math.random() *vetor.length);
+      System.out.println(vetor[i]);
+    }
+    
+    long inicio = System.currentTimeMillis();
+    long fim;
+    
+    int aux;
+    for (int i = 0; i < vetor.length ;i++ ) {
+      for (int j = i +1; j < vetor.length ; j++) {
+        if (vetor[i] > vetor[j]) {
+          
+          aux = vetor[j];
+          vetor[j] = vetor[i];
+          vetor[i] = aux;
+          
+        }
+      }
+    }
+    fim = System.currentTimeMillis();
+    System.out.println("tempo " + (fim-inicio));
+    
+     System.out.println("Vetor ordenado");
+    for (int i = 0; i < vetor.length ; i++) {
+     System.out.println(vetor[i]);
+       
+    }
+  }
+  
+}
