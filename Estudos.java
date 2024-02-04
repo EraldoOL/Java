@@ -2255,3 +2255,113 @@ public class Main{
   }
   
 }
+
+
+//Outra forma de organizar
+
+public class Main{
+  
+  public static void main(String[] args) {
+    
+    int[] vetor = new int[10];
+    
+    for (int i = 0; i < vetor.length ; i++) {
+      vetor[i] = (int) (Math.random() * vetor.length);
+    }
+    
+    int aux, j;
+    
+    for (int i = 1; i < vetor.length ;i++ ) {
+      
+      aux = vetor[i];
+      
+      j = i-1;
+      while( j >= 0 && vetor[j] > aux){
+        
+        vetor[j +1] = vetor[j];
+        j--;
+        
+      }
+      vetor[j+1] = aux;
+    }
+    for (int i = 0; i< vetor.length ; i++) {
+      
+      
+      System.out.println(vetor[i]);
+    }
+    
+  }
+}
+
+public class Main{
+  
+  public static void main(String[] args) {
+    
+    int[] vetor = new int[10];
+    
+    for (int i = 0; i < vetor.length ; i++){
+      vetor[i] = (int) (Math.random() * vetor.length);
+    } 
+    
+    System.out.println("desordenado");
+    for (int i = 0; i < vetor.length ; i++){
+      System.out.println(vetor[i]);
+    }
+    
+    
+    int posicaoMenor,aux;
+    for (int i = 0; i < vetor.length ; i++) {
+      
+      posicaoMenor = i;
+      for (int j = i+1; j < vetor.length ; j++) {
+        if (vetor[j] < vetor[posicaoMenor]) {
+          posicaoMenor = j;
+        }
+      }
+      
+      aux = vetor[posicaoMenor];
+      vetor[posicaoMenor] = vetor[i];
+      vetor[i] = aux;
+      
+    }
+    
+    System.out.println("\n\nordenado");
+    for (int i = 0; i < vetor.length ; i++){
+      System.out.println(vetor[i]);
+    }
+  }
+}
+
+public class Main {
+
+  public static void main(String[] args) {
+
+    int[] vetor = new int[5];
+
+    for (int i = 0; i < vetor.length ; i++ ) {
+
+      vetor[i] = (int) (Math.random() * vetor.length);
+    }
+
+    System.out.println("Vetor");
+    for (int i = 0; i < vetor.length ; i++ ) {
+
+      System.out.println(vetor[i]);
+    }
+
+    System.out.println("Soma");
+    System.out.println(somar(0,0,vetor));
+  }
+
+  private static int somar(int soma, int posicao, int[] vetor){
+
+    if (posicao < vetor.length) {
+
+      soma = soma + vetor[posicao];
+      return somar(soma, posicao+1, vetor);
+
+    } else {
+      return soma;
+    }
+  }
+}
