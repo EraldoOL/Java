@@ -2365,3 +2365,156 @@ public class Main {
     }
   }
 }
+
+
+public class Main {
+
+  public static void main(String[] args) {
+
+    int[] vetor = new int[10];
+
+    for (int i = 0; i < vetor.length ; i++) {
+
+      vetor[i] = (int) Math.floor(Math.random() * vetor.length);
+    }
+
+    System.out.println("Desordenado");
+    for (int i = 0; i < vetor.length ; i++){
+
+      System.out.print(vetor[i] + " ");
+    }
+
+    //Heap sort
+
+    int n = vetor.length;
+
+    for (int i = n/2 -1; i >= 0 ; i-- ) { // Corrigido: operador de decremento --
+      aplicarHeap(vetor, n, i);
+    }
+
+    System.out.println("\n\n Quase ordenado");
+    for (int i = 0; i < vetor.length ; i++){
+
+      System.out.print(vetor[i] + " ");
+    }
+
+    for (int j = n -1; j > 0; j--) {
+      int aux = vetor[0];
+      vetor[0] = vetor[j];
+      vetor[j] = aux;
+
+      aplicarHeap(vetor, j ,0);
+    }
+
+
+    System.out.println("\n\n Ordenado");
+    for (int i = 0; i < vetor.length ; i++){
+
+      System.out.print(vetor[i] + " ");
+    }
+
+  }
+
+  private static void aplicarHeap(int[] vetor, int n, int i){ // Corrigido: nome do parâmetro vetor
+
+    int raiz = i;
+    int esquerda = 2*i +1;
+    int direita = 2*i +2;
+
+    if (esquerda < n && vetor[esquerda] > vetor[raiz]) {
+
+      raiz = esquerda;
+    }
+
+    if (direita < n && vetor[direita] > vetor[raiz]) {
+
+      raiz = direita;
+    }
+
+    if (raiz != i) {
+
+      int aux = vetor[i];
+      vetor[i] = vetor[raiz];
+      vetor[raiz] = aux;
+
+      aplicarHeap(vetor, n, raiz);
+    }
+  }
+}
+
+
+
+
+// QUICK SORT O MAIS RAPIDO
+
+public class Main{
+  
+  //Quick Sort o mais rapido
+  
+  public static void main(String[] args) {
+    
+    int[] vetor = new int[10];
+    
+    for (int i = 0; i < vetor.length ; i++) {
+      vetor[i] = (int) Math.floor(Math.random() * vetor.length);
+    }
+    
+    System.out.println("Desordenado");
+    
+    for (int i = 0; i < vetor.length ; i++) {
+      System.out.print(vetor[i] + " ");
+    }
+    
+    quicksort(vetor,0,vetor.length -1);
+    
+    System.out.println("\n\n Ordenado");
+    
+    for (int i = 0; i < vetor.length ; i++) {
+      System.out.print(vetor[i] + " ");
+    }
+    
+  }
+  
+  static void quicksort(int[] vetor, int esquerda, int direita){
+    
+    if (esquerda < direita) {
+      
+      int p = particao(vetor,esquerda,direita);
+      
+      quicksort(vetor,esquerda,p);
+      quicksort(vetor,p +1,direita);
+    }
+  }
+  
+  static int particao(int[] vetor , int esquerda, int direita){
+    
+    int meio = (int) (esquerda + direita) /2;
+    int pivot = vetor[meio];
+    int i = esquerda -1;
+    int j = direita +1;
+    
+    while (true) {
+      
+      
+      do{
+        
+        i++;
+        
+      }while(vetor[i] < pivot);
+      
+      do {
+        
+        j--;
+        
+      }while(vetor[j] > pivot);
+      if (i >= j) {
+        return j;
+      }
+      
+      int aux = vetor[i];
+      vetor[i] = vetor[j];
+      vetor[j] = aux;
+      
+    }
+  }
+}
