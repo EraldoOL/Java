@@ -2659,3 +2659,268 @@ public static class Arvore<TIPO extends Comparable>{
     
   }
 }
+
+
+
+public class Arvore{
+  
+  
+
+
+public class Elemento<TIPO>{
+  
+  static private TIPO valor;
+  
+  private Elemento<TIPO> esquerda;
+  private Elemento<TIPO> direita;
+  
+  
+  
+  public Elemento(TIPO novoValor){
+    
+    this.valor = novoValor;
+    this.esquerda = null;
+    this.direita = null;
+    
+  }
+  
+  
+  public TIPO getValor() {
+    
+    return valor;
+  }
+  
+  public void setValor(TIPO valor){
+    
+    this.valor = valor;
+  }
+  
+  public Elemento<TIPO> getEsquerda() {
+    
+    return esquerda;
+  }
+  
+  public void setEsquerda(Elemento<TIPO> esquerda){
+    
+    this.esquerda = esquerda;
+  }
+  
+  
+  public Elemento<TIPO> getDireita() {
+    
+    return direita;
+  }
+  
+  public void setDireita(Elemento<TIPO> direita){
+    
+    this.direita = direita;
+  }
+  
+  
+}
+
+
+public static class Arvore<TIPO extends Comparable>{
+  
+  
+  private Elemento<TIPO> raiz;
+    
+    
+    public Arvore() {
+      this.raiz = null;
+      
+    
+  }
+  
+  public static void adicionar(TIPO valor){
+    
+    Elemento<TIPO> novoElemento = new Elemento<TIPO>(valor);
+    if (raiz == null) {
+      
+      this.raiz = novoElemento;
+      
+    } else {
+      
+      Elemento<TIPO> atual = this.raiz;
+      while( true ){
+        
+        if (novoElemento.getValor().compareTo(atual.getValor()) == -1){
+          
+          if (atual.getEsquerda() != null) {
+            atual = atual.getEsquerda();
+            
+          } else {
+            
+            atual.setEsquerda(novoElemento);
+            break;
+          }
+          
+        } else {
+          
+          if (atual.getDireita() != null) {
+            atual = atual.getDireita();
+            
+          } else {
+            
+            atual.setDireita(novoElemento);
+            break;
+          }
+        }
+      }
+    }
+  }
+  
+  public Elemento<TIPO> getRaiz(){
+    
+    return raiz;
+  }
+  
+  
+  public void emOrdem(Elemento<TIPO> atual){
+    
+    if (atual != null) {
+      
+     emOrdem(atual.getEsquerda());
+     emOrdem(atual.getDireita());
+     System.out.println(atual.getValor());
+     
+     
+    }
+    
+  }
+  
+  public void remover(TIPO valor){
+    
+    Elemento<TIPO> atual = this.raiz;
+    Elemento<TIPO> paiAtual = null;
+    while(atual != null){
+      
+      if (atual.getValor().equals(valor)) {
+        
+        break;
+        
+      } else if(valor.compareTO(atual.getValor()) == -1){
+        atual = atual.getEsquerda();
+        
+      } else {
+        
+        paiAtual = atual;
+        atual = atual.getDireita();
+      }
+    }
+    if (atual != null) {
+      
+      if (atual.getDireita() != null){
+        
+        Elemento<TIPO> substituto = atual.getDireita();
+        Elemento<TIPO> paiSubstituto = atual;
+        
+        while(substituto.getEsquerda() != null){
+          
+          paiSubstituto = substituto;
+          
+          substituto = substituto.getEsquerda();
+        }
+        
+      if (paiAtual != null) {
+        
+        if (atual.getValor().compareTO(paiAtual.getValor()) == -1) {
+          
+          paiAtual.setEsquerda(substituto);
+          
+        } else{
+          
+          paiAtual.setDireita(substituto);
+        }
+     } else{
+       
+       this.raiz = substituto;
+     }
+        
+        ////
+        
+      } else if(atual.getDireita() != null){
+        
+      } else if (atual.getEsquerda() != null){
+        
+        Elemento<TIPO> substituto = atual.getEsquerda();
+        Elemento<TIPO> paiSubstituto = atual;
+        
+        while(substituto.getDireita() != null){
+          
+          paiSubstituto = substituto;
+          
+          substituto = substituto.getDireita();
+        }
+        
+        if (paiAtual != null) {
+          
+        if (atual.getValor().compareTO(paiAtual.getValor()) == -1) {
+          
+          paiAtual.setEsquerda(substituto);
+          
+        } else{
+          
+          paiAtual.setDireita(substituto);
+        }
+      } else {
+        
+        this.raiz = substituto;
+      }
+        
+        
+        if (substituto.getValor().compareTO(paiSubstituto.getValor()) == -1) {
+          
+          paiSubstituto.setEsquerda(null);
+          
+        } else{
+          
+          paiSubstituto.setDireita(null);
+        }
+        
+      } else {
+        
+        if (paiAtual != null) {
+        if (atual.getValor().compareTO(paiAtual.getValor()) == -1) {
+          
+          paiAtual.setEsquerda(null);
+          
+        } else{
+          
+          paiAtual.setDireita(null);
+        }
+        
+       } else{
+         
+         this.raiz = null;
+       }
+       
+      }
+      
+      return true;
+      
+    } else{
+      
+      return false;
+    }
+  }
+}
+  
+  public static void main(String[] args) {
+    
+    
+    Arvore<Integer> arvore = new Arvore<Integer>();
+    arvore.adicionar(10);
+    arvore.adicionar(8);
+    arvore.adicionar(5);
+    arvore.adicionar(9);
+    arvore.adicionar(7);
+    arvore.adicionar(18);
+    arvore.adicionar(13);
+    arvore.adicionar(20);
+    
+    System.out.println("\n\nEm Ordem");
+    arvore.emOrdem(arvore.getRaiz());
+    
+  }
+}
