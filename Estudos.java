@@ -2924,3 +2924,281 @@ public static class Arvore<TIPO extends Comparable>{
     
   }
 }
+
+import java.util.ArrayList;
+
+public class Main{
+  
+  
+  public static class Grafo<TIPO>{
+    
+    private ArrayList<Vertice<TIPO>> vertices;
+    private ArrayList<Vertice<TIPO>> arestas;
+    
+    
+    public Grafo(){
+      
+      this.vertices = new ArrayList<Vertice<TIPO>>();
+      this.arestas = new ArrayList<Vertice<TIPO>>();
+    }
+    
+    
+    public void adicionarVertice(TIPO dado){
+      
+      Vertice<TIPO> novoVertice = new Vertice<TIPO>(dado);
+      
+      this.vertices.add(novoVertice);
+      
+    }
+    
+    public void adicionarAresta(Double peso, TIPO dadoInicio, TIPO dadoFim){
+      
+      Vertice<TIPO> inicio = this.getVertice(dadoInicio);
+      Vertice<TIPO> fim = this.getVertice(dadoFim);
+      Aresta<TIPO> aresta = new Aresta<TIPO>(peso, inicio, fim);
+      
+      inicio.adicionarArestaSaida(aresta);
+      fim.adicionarArestaEntrada(aresta);
+      this.arestas.add(aresta);
+      
+    }
+    
+    
+    public Vertice<TIPO> getVertice(TIPO dado){
+      
+      Vertice<TIPO> vertice = null;
+      
+      for (int i = 0;i < this.vertices.size() ; i++) {
+        
+        if (this.vertice.get(i).getDado().equals(dado)) {
+          
+          vertice = this.vertice.get(i);
+          break;
+        }
+        
+        
+      }
+      
+      return vertice;
+      
+    }
+    
+    public void buscaEmLargura(){
+      
+      ArrayList<Vertice<TIPO>> marcados = new ArrayList<Vertice<TIPO>>();
+      ArrayList<Vertice<TIPO>> fila = new ArrayList<Vertice<TIPO>>();
+      
+      Vertice<TIPO> atual = this.vertices.get(0);
+      marcados.add(atual);
+      System.out.println(atual.getDado());
+      fila.add(atual);
+      while (fila.size() > 0) {
+        Vertice<TIPO> visitado = fila.get(0);
+        for (int i=0;i < visitado.getArestasSaida() ; i++ ) {
+          
+          Vertice<TIPO> proximo = visitado.getArestasSaida().get(i).getFim();
+          if (!marcados.contains(proximo)) {
+            marcados.add(proximo);
+            System.out.println(proximo.getDado());
+            fila.add(proximo);
+          }
+        }
+        fila.remove(0);
+      }
+    }
+  }
+  
+  
+  
+  
+  
+  
+  public static class Vertice<TIPO>{
+    
+    private TIPO dado;
+    private ArrayList<Aresta<TIPO>> arestasEntrada;
+    private ArrayList<Aresta<TIPO>> arestasSaida;
+    
+    
+    
+    public Vertice(TIPO valor){
+      
+      this.dado = valor;
+      this.arestaEntrada = new  ArrayList<Aresta<TIPO>>();
+      this.arestaSaida = new  ArrayList<Aresta<TIPO>>();
+      
+      
+    }
+    
+    
+    public TIPO getDado(){
+      
+      return dado;
+      
+    }
+    
+    public void setDado(TIPO dado){
+      
+      this.dado = dado;
+      
+    }
+    
+    public void adicionarArestaEntrada(Aresta<TIPO> aresta){
+      
+      this.arestaEntrada.add(aresta);
+      
+    }
+    
+    
+    public void adicionarArestaSaida(Aresta<TIPO> aresta){
+      
+      this.arestaSaida.add(aresta);
+      
+    }
+    
+    public ArrayList<Aresta<TIPO>> getArestasEntrada(){
+      
+      return arestasEntrada;
+    }
+    
+    
+    public ArrayList<Aresta<TIPO>> getArestasSaida(){
+      
+      return arestasSaida;
+    }
+    
+    
+    
+  }
+  
+  
+  
+  
+  
+  public static class Aresta<TIPO>{
+    
+    private Double peso;
+    private Vertice<TIPO> inicio;
+    private Vertice<TIPO> fim;
+    
+    
+    public Aresta(Double peso, Vertice<TIPO> inicio, Vertice<TIPO> fim){
+      
+      this.peso = peso;
+      this.inicio = inicio;
+      this.fim = fim;
+      
+      
+    }
+    
+    
+    public Double getPeso(){
+      
+      return peso;
+      
+    }
+    
+    public void setPeso(Double peso){
+      
+      this.peso = peso;
+      
+    }
+    
+    public Vertice<TIPO> getInicio(){
+      
+      return inicio;
+    }
+    
+    public void setInicio(Vertice<TIPO> inicio ){
+      this.inicio = inicio;
+    }
+    
+    public Vertice<TIPO> getFim(){
+      
+      return fim;
+    }
+    
+    public void setFim(Vertice<TIPO> fim){
+      
+      this.fim = fim;
+    }
+    
+  }
+  
+  
+  
+  public static void main(String[] args) {
+    
+    Grafo<String> grafo = new Grafo<String>();
+    
+    grafo.adicionarVertice("Joao");
+    grafo.adicionarVertice("Lorenzo");
+    grafo.adicionarVertice("Creuza");
+    grafo.adicionarVertice("Creber");
+    grafo.adicionarVertice("Claudio");
+    
+    
+    grafo.adicionarAresta(2.0, "Joao", "Lorenzo");
+    grafo.adicionarAresta(3.0, "Lorenzo", "Creber");
+    grafo.adicionarAresta(1.0, "Creber", "Creuza");
+    grafo.adicionarAresta(1.0, "Joao", "Creuza");
+    grafo.adicionarAresta(2.0, "Claudio", "Lorenzo");
+    grafo.adicionarAresta(3.0, "Claudio", "Joao");
+    
+    
+    grafo.buscaEmLargura();
+  }
+}
+
+
+// SHELL SORT
+
+public class Main{
+  
+  
+  public static void main(String[] args) {
+    
+    int[] vetor = new int[10];
+    
+    System.out.println("vetor desordenado");
+    
+    for (int i=0; i < vetor.length; i++) {
+      vetor[i] = (int) (Math.random() * vetor.length);
+      System.out.println(vetor[i]);
+    }
+    
+    int h = 1;
+    int n = vetor.length;
+    while (h < n) {
+      h = h *3+1;
+    }
+    
+    h = (int) Math.floor(h/3);
+    
+    int c,j;
+    while(h > 0){
+      
+      for (int i = h; i < n; i++) {
+        c = vetor[i];
+        j = i;
+        while (j >= h && vetor[j - h] > c){
+          
+          vetor[j] = vetor[j - h];
+          j = j - h;
+        } 
+        
+        vetor[j] = c;
+      }
+      
+      h = h /2;
+      
+    }
+    
+    System.out.println("Vetor Ordenado");
+    
+    for (int i = 0; i < vetor.length ; i++ ) {
+      
+      System.out.println(vetor[i]);
+    }
+  }
+}
